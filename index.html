@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIB Terminal - Dossier: Tim Cheese</title>
+    <title>FIB Terminal - Dossier: Tim Chessee</title>
     <style>
         :root {
             --bg-deep: #030406; /* Tiefschwarz */
@@ -286,6 +286,15 @@
             color: #ffffff;
         }
 
+        /* Miro-Board Einbindung */
+        .miro-container {
+            margin-top: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
@@ -318,7 +327,7 @@
     <nav class="navigation-bar">
         <button class="nav-item active" onclick="openSection('intro')">Einführung</button>
         <button class="nav-item" onclick="openSection('about')">Infos zu Mir</button>
-        <button class="nav-item" onclick="openSection('why-me')">Warum Tim Cheese?</button>
+        <button class="nav-item" onclick="openSection('why-me')">Warum Tim Chessee?</button>
         <button class="nav-item" onclick="openSection('concept')">Orgakonzept</button>
         <button class="nav-item" onclick="openSection('changes')">Das möchte ich Ändern</button>
         <button class="nav-item" onclick="openSection('conclusion')">Schluss</button>
@@ -332,17 +341,18 @@
             <div id="intro" class="content-section active">
                 <h2>Einführung</h2>
                 <div class="highlight-box">
-Text.
+                    Sehr geehrte Serverleitung, sehr geehrte Review-Kommission,<br>
+                    hiermit öffne ich die offizielle digitale Bewerbungsakte zur Übernahme des Federal Investigation Bureau.
                 </div>
                 <p>
-                    Text                
+                    Mein Name ist Tim Chessee und ein großer Teil meiner Laufbahn auf GrandRP war eng mit dem Federal Investigation Bureau verbunden. Über die Jahre hinweg durfte ich die Behörde in unterschiedlichen Rollen begleiten, Verantwortung übernehmen und gemeinsam mit vielen engagierten Mitarbeitern an ihrer Entwicklung mitwirken. Besonders meine Zeit innerhalb der FIBCO hat meinen Blick auf die Organisation geprägt und mir gezeigt, wie wichtig verlässliche Führung, starke Strukturen und motivierte Mitarbeiter für den langfristigen Erfolg einer Behörde sind.
                 </p>
                 <p>
-                    Text
+                    Nach vielen Jahren im Bureau möchte ich nun den nächsten Schritt gehen und mich für die Leitung des Federal Investigation Bureau bewerben. Die folgenden Abschnitte sollen einen Einblick in meine Motivation, meine Vorstellungen für die Organisation sowie meine Ziele für deren zukünftige Entwicklung geben.
                 </p>
             </div>
 
-            <!-- 2. INFOS ZU MIR -->
+            <!-- 2. INFOS ZU MIT -->
             <div id="about" class="content-section">
                 <h2>Infos zu Mir</h2>
                 <p>Registrierte Personalstammdaten des Bewerbers:</p>
@@ -351,15 +361,15 @@ Text.
                 <div class="profile-grid-ooc">
                     <div class="profile-card">
                         <div class="card-label">Name (OOC)</div>
-                        <div class="card-value">Text</div>
+                        <div class="card-value">Leo</div>
                     </div>
                     <div class="profile-card">
                         <div class="card-label">Alter</div>
-                        <div class="card-value">Text</div>
+                        <div class="card-value">17</div>
                     </div>
                     <div class="profile-card">
                         <div class="card-label">Discord</div>
-                        <div class="card-value">Text</div>
+                        <div class="card-value">leo1..</div>
                     </div>
                 </div>
 
@@ -367,67 +377,93 @@ Text.
                 <div class="profile-grid">
                     <div class="profile-card">
                         <div class="card-label">Name (IC)</div>
-                        <div class="card-value">Tim Cheese</div>
+                        <div class="card-value">Tim Chessee</div>
                     </div>
                     <div class="profile-card">
                         <div class="card-label">ID</div>
-                        <div class="card-value">Text</div>
+                        <div class="card-value">264694</div>
                     </div>
                     <div class="profile-card">
                         <div class="card-label">Visum</div>
-                        <div class="card-value">Text</div>
+                        <div class="card-value">[DEINE VISUMSSTUFE HIER EINTRAGEN, Z.B. STUFE 32]</div>
                     </div>
                     <div class="profile-card">
                         <div class="card-label">Onlinezeit</div>
-                        <div class="card-value">Text</div>
+                        <div class="card-value">4 - 6 Stunden pro Tag</div>
                     </div>
                     <div class="profile-card" style="grid-column: span 2;">
                         <div class="card-label">Bisherige Führungserfahrungen</div>
-                        <div class="card-value">Text</div>
+                        <div class="card-value">[HIER DEINE ÄMTER AUFZÄHLEN, Z.B.: LANGJÄHRIGE TÄTIGKEIT IN DER FIBCO / ABTEILUNGSLEITUNGEN O.Ä.]</div>
                     </div>
                 </div>
             </div>
 
-            <!-- 3. WARUM TIM CHEESE? -->
+            <!-- 3. WARUM TIM CHESSEE? -->
             <div id="why-me" class="content-section">
-                <h2>Warum Tim Cheese?</h2>
+                <h2>Warum Tim Chessee?</h2>
                 <div class="highlight-box">
-                    Text
+                    Die Frage ist nicht nur, wer das FIB leiten kann, sondern wer das Fundament besitzt, um die Fraktion langfristig stabil und attraktiv zu halten.
                 </div>
-                <p><strong>Was mich für diesen Posten qualifiziert:</strong></p>
+                <p>
+                    Wenn ich auf meine Zeit im Federal Investigation Bureau zurückblicke, fällt es mir schwer, sie auf ein paar einzelne Momente zu reduzieren. Ein großer Teil meiner Laufbahn auf diesem Server war mit dieser Organisation verbunden. Ich habe unterschiedliche Führungen erlebt, gute Zeiten und schwierige Phasen miterlebt und dabei beobachten können, wie sich das Bureau über die Jahre entwickelt hat.
+                </p>
+                <p>
+                    Besonders durch meine Tätigkeit innerhalb der FIBCO durfte ich die Behörde aus einer Perspektive kennenlernen, die weit über den normalen Dienstalltag hinausgeht. Viele Entscheidungen, Entwicklungen und Herausforderungen habe ich nicht nur miterlebt, sondern aktiv begleitet. Dadurch entstand mit der Zeit nicht nur Erfahrung, sondern auch eine starke Verbundenheit mit der Organisation.
+                </p>
+                <p>
+                    Rückblickend haben mich dabei vor allem die Menschen geprägt, mit denen ich zusammenarbeiten durfte. Insbesondere Persönlichkeiten wie Gojira Bukur und Eko Plaste haben meinen Blick auf Führung und Organisationsentwicklung nachhaltig beeinflusst. Von beiden konnte ich viel lernen. Nicht nur über den Umgang mit Mitarbeitern oder die Leitung einer Behörde, sondern auch darüber, wie wichtig Verantwortungsbewusstsein, Verlässlichkeit und Weitsicht für eine funktionierende Organisation sind.
+                </p>
+                <p>
+                    Wer mich kennt, weiß außerdem, dass ich nie der Lauteste im Raum war. Ich habe nie versucht, mich durch große Reden oder ständige Aufmerksamkeit in den Vordergrund zu stellen. Stattdessen habe ich immer versucht, durch meine Arbeit, meine Präsenz und meine Zuverlässigkeit zu überzeugen. Genau diesen Ansatz möchte ich auch als Leader verfolgen.
+                </p>
+                <p>
+                    Ich bewerbe mich heute nicht, weil ich unbedingt einen höheren Rang erreichen möchte. Ich bewerbe mich, weil ich nach all den Jahren überzeugt bin, dass ich die Erfahrung, die Kontakte und das Verständnis für diese Behörde mitbringe, um sie gemeinsam mit ihren Mitgliedern erfolgreich in die Zukunft zu führen.
+                </p>
+
+                <h3 style="margin-top: 40px;">Und was zeichnet mich aus?</h3>
                 <ul>
-                    <li><strong>Text</strong> Text</li>
-                    <li><strong>Text</strong> Text</li>
-                    <li><strong>Text</strong> Text</li>
+                    <li><strong>Zuhören können:</strong> Während meiner Zeit im Federal Investigation Bureau habe ich mit vielen unterschiedlichen Menschen zusammengearbeitet. Dabei wurde mir bewusst, dass gute Führung nicht bedeutet, immer selbst die besten Ideen zu haben. Viel wichtiger ist es, die richtigen Menschen zusammenzubringen, unterschiedliche Meinungen zu berücksichtigen und Entscheidungen zu treffen, die der gesamten Organisation zugutekommen.</li>
+                    <li><strong>Tiefgehende Strukturerfahrung:</strong> Durch meine langjährige Tätigkeit innerhalb der FIBCO konnte ich Erfahrungen sammeln, die weit über den normalen Dienstbetrieb hinausgehen. Ich habe erlebt, welche Strukturen funktionieren, welche Fehler sich wiederholen und welche Maßnahmen langfristig erfolgreich sind. Dieses Wissen möchte ich nutzen, um die Organisation weiterzuentwickeln.</li>
+                    <li><strong>Fairness & Transparenz:</strong> Ich lege großen Wert auf Fairness, Transparenz und Verlässlichkeit. Mitarbeiter sollen wissen, woran sie sind und was von ihnen erwartet wird. Gleichzeitig sollen gute Leistungen anerkannt werden und jeder die Möglichkeit erhalten, sich innerhalb der Organisation einzubringen.</li>
+                    <li><strong>Verantwortung im Ernstfall:</strong> Darüber hinaus bin ich überzeugt davon, dass eine Führungskraft nicht nur in guten Zeiten präsent sein muss. Gerade dann, wenn Probleme entstehen oder schwierige Entscheidungen getroffen werden müssen, ist es wichtig, Verantwortung zu übernehmen und für die Organisation einzustehen.</li>
                 </ul>
             </div>
 
             <!-- 4. ORGAKONZEPT -->
             <div id="concept" class="content-section">
                 <h2>Organisationskonzept</h2>
-                <p>Text</p>
+                <p>
+                    Mein Ziel ist kein vollständiger Neuanfang, sondern die Weiterentwicklung einer Organisation, die bereits über viele erfahrene und engagierte Mitglieder verfügt.
+                </p>
+                <p>Das Federal Investigation Bureau soll unter meiner Leitung auf drei grundlegenden Prinzipien aufbauen:</p>
                 
-                <p><strong>Text</strong></p>
-                <p>Text</p>
-
-                <p><strong>Text</strong></p>
                 <ul>
-                    <li><strong>Text</strong> Text</li>
-                    <li><strong>Text</strong> Text</li>
+                    <li><strong>Erfahrung bewahren:</strong> Viele Mitarbeiter verfügen über wertvolles Wissen und langjährige Erfahrung. Dieses Wissen darf nicht verloren gehen. Erfahrene Agents sollen aktiv in Ausbildungs- und Entwicklungsprozesse eingebunden werden, um ihr Wissen an die nächste Generation weiterzugeben.</li>
+                    <li><strong>Mitarbeiter fördern:</strong> Jede Organisation ist nur so stark wie ihre Mitglieder. Deshalb sollen Ausbildung, Betreuung und persönliche Entwicklung einen deutlich höheren Stellenwert erhalten. Jeder Mitarbeiter soll die Möglichkeit haben, Verantwortung zu übernehmen und sich innerhalb der Behörde weiterzuentwickeln.</li>
+                    <li><strong>Aktivität schaffen:</strong> Eine aktive Behörde erzeugt automatisch Rollenspiel. Ermittlungen, Schulungen, gemeinsame Operationen und interne Projekte sollen dafür sorgen, dass Mitglieder aller Dienstgrade dauerhaft eingebunden werden und sinnvolle Beschäftigung finden.</li>
                 </ul>
 
-                <p><strong>Text</strong></p>
-                <p>Text</p>
+                <p>
+                    Langfristig wünsche ich mir ein Federal Investigation Bureau, das für Kompetenz, Aktivität und Professionalität steht. Eine Organisation, die ihre Traditionen bewahrt, offen für neue Ideen bleibt und sowohl intern als auch extern Respekt genießt. Nach all den Jahren, die ich innerhalb dieser Behörde verbringen durfte, wäre es für mich eine besondere Ehre, gemeinsam mit ihren Mitgliedern die nächsten Kapitel ihrer Geschichte zu gestalten.
+                </p>
+
+                <!-- Interaktives Miro-Board-Fenster -->
+                <div class="miro-container">
+                    <iframe width="100%" height="550" src="https://miro.com/app/live-embed/uXjVHPGQxDs=/?autoplay=true" frameBorder="0" scrolling="no" allowFullScreen></iframe>
+                </div>
             </div>
 
             <!-- 5. DAS MÖCHTE ICH ÄNDERN -->
             <div id="changes" class="content-section">
                 <h2>Das möchte ich Ändern</h2>
-                <p>Text</p>
+                <p>
+                    Meiner Meinung nach lebt das Federal Investigation Bureau von den Geschichten, die innerhalb der Behörde entstehen. Genau deshalb sollte das Hauptaugenmerk nicht ausschließlich auf kurzfristigen Aktionen liegen, sondern auf langfristigem und nachhaltigem Rollenspiel.
+                </p>
                 <ul>
-                    <li><strong>Text</strong> Text</li>
-                    <li><strong>Text</strong> Text</li>
-                    <li><strong>Text</strong> Text</li>
+                    <li><strong>Langfristige Ermittlungskampagnen:</strong> Ich möchte Ermittlungen fördern, die sich über längere Zeiträume entwickeln und mehrere Abteilungen sowie andere Staatsfraktionen einbinden. Große Verfahren, verdeckte Ermittlungen und gemeinsame Operationen schaffen oftmals deutlich mehr Rollenspiel als spontane Einzelaktionen.</li>
+                    <li><strong>Förderung der Eigeninitiative:</strong> Gleichzeitig halte ich es für wichtig, dass Mitarbeiter mehr Möglichkeiten erhalten, eigene Ideen einzubringen. Nicht jede gute Idee muss aus der Führungsebene kommen. Viele der besten Projekte entstehen durch engagierte Agents, die Verantwortung übernehmen und eigene Konzepte entwickeln möchten. Diese Eigeninitiative möchte ich gezielt fördern.</li>
+                    <li><strong>Nachhaltiger Aufbau von Strukturen:</strong> Ein weiterer Schwerpunkt wird die Ausbildung neuer Mitarbeiter sein. Jeder Agent soll die Möglichkeit erhalten, sich weiterzuentwickeln und innerhalb der Organisation seinen eigenen Weg zu gehen. Langfristig profitiert jede Behörde davon, wenn Wissen weitergegeben wird und neue Führungspersönlichkeiten aufgebaut werden.</li>
+                    <li><strong>Verlässliche Partnerschaften:</strong> Darüber hinaus möchte ich die Zusammenarbeit mit anderen staatlichen Organisationen weiter stärken. Das Federal Investigation Bureau sollte als verlässlicher Partner innerhalb des Staates wahrgenommen werden und gemeinsam mit anderen Behörden für abwechslungsreiches und qualitativ hochwertiges Rollenspiel sorgen.</li>
                 </ul>
             </div>
 
@@ -435,13 +471,19 @@ Text.
             <div id="conclusion" class="content-section">
                 <h2>Schlusswort</h2>
                 <p>
-                    Text
+                    Ehrlich gesagt hätte ich vor einigen Jahren selbst nicht gedacht, irgendwann eine Bewerbung für die Leitung des Federal Investigation Bureau zu schreiben.
                 </p>
                 <p>
-                    Text
+                    Ein großer Teil meiner Zeit auf GrandRP war mit dieser Behörde verbunden. Ich habe hier vieles gelernt, starke Führungspersönlichkeiten erlebt und mit Menschen zusammengearbeitet, die mich bis heute geprägt haben. Gerade deshalb fällt es mir schwer, das FIB objektiv zu betrachten. Für mich ist es deutlich mehr als nur eine Fraktion, in der ich meinen Dienst verrichte.
                 </p>
+                <p>
+                    Ob als Agent, innerhalb der FIBCO oder in Gesprächen mit Kollegen und Vorgesetzten, mein Ziel war es immer, einen positiven Beitrag für die Organisation zu leisten. Die Bewerbung ist für mich deshalb nicht der Abschluss dieses Weges, sondern lediglich der nächste Schritt.
+                </p>
+                <p>
+                    Am Ende liegt die Entscheidung selbstverständlich nicht bei mir. Unabhängig davon, wie sie ausfällt, werde ich dem Federal Investigation Bureau weiterhin mit derselben Loyalität und Motivation dienen, die mich die letzten Jahre begleitet hat.
+                </p>                
                 <p style="margin-top: 50px;">Hochachtungsvoll,</p>
-                <p><strong style="color: var(--gold-main);">Tim Cheese</strong><br><span style="color: var(--text-dark); font-size: 13px;">Bewerber für das Amt des FIB Directors</span></p>
+                <p><strong style="color: var(--gold-main);">Tim Chessee</strong><br><span style="color: var(--text-dark); font-size: 13px;">Bewerber für das Amt des FIB Directors</span></p>
             </div>
 
         </div>
