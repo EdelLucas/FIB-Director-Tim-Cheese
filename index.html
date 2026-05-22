@@ -6,14 +6,14 @@
     <title>FIB Terminal - Dossier: Tim Cheese</title>
     <style>
         :root {
-            --bg-base: #0b0d10;
-            --bg-panel: rgba(20, 24, 30, 0.85);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --text-primary: #e3e7ed;
-            --text-secondary: #8491a3;
-            --accent-color: #ffffff;
-            --alert-red: #ff3b30;
-            --accent-glow: rgba(255, 255, 255, 0.05);
+            --bg-deep: #050608; /* Tiefschwarz */
+            --bg-panel: rgba(14, 18, 26, 0.95); /* Sehr dunkles Blau-Schwarz */
+            --gold-main: #d4af37; /* Klassisches Gold */
+            --gold-glow: rgba(212, 175, 55, 0.15);
+            --border-color: rgba(212, 175, 55, 0.25); /* Goldene Rahmenlinien */
+            --text-bright: #f4f6f9;
+            --text-dark: #8fa0b5; /* Taktisches Blau-Grau für Nebentexte */
+            --accent-blue: #1e3a8a; /* Dunkelblau für Akzente */
         }
 
         /* Fullscreen Reset */
@@ -23,14 +23,13 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: var(--bg-base);
-            /* Subtiles Taktik-Raster im Hintergrund */
+            background-color: var(--bg-deep);
+            /* Edler Farbverlauf im Hintergrund */
             background-image: 
-                linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
-            background-size: 30px 30px;
+                radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(212, 175, 55, 0.05) 0px, transparent 60%);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            color: var(--text-primary);
+            color: var(--text-bright);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -42,103 +41,95 @@
             display: flex;
             flex-direction: column;
             background: var(--bg-panel);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
-        /* Minimalist Classified Header */
+        /* Edler Header */
         .dashboard-header {
             padding: 25px 40px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
-            justify-content: space-between;
             align-items: center;
             flex-shrink: 0;
+            background: rgba(5, 6, 8, 0.5);
         }
 
         .brand-zone {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .badge-icon {
-            font-family: "Courier New", Courier, monospace;
-            font-weight: 900;
-            font-size: 14px;
-            letter-spacing: 2px;
-            padding: 6px 12px;
-            border: 1px solid var(--alert-red);
-            color: var(--alert-red);
-            border-radius: 3px;
+            font-family: "Georgia", serif;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border: 1px solid var(--gold-main);
+            color: var(--gold-main);
+            border-radius: 4px;
             text-transform: uppercase;
+            background: rgba(212, 175, 55, 0.03);
+            box-shadow: 0 0 15px var(--gold-glow);
         }
 
         .brand-text h1 {
             margin: 0;
-            font-size: 20px;
-            letter-spacing: 3px;
+            font-size: 24px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
             font-weight: 700;
+            color: #ffffff;
         }
 
         .brand-text p {
             margin: 4px 0 0 0;
-            font-size: 10px;
-            color: var(--text-secondary);
+            font-size: 11px;
+            color: var(--gold-main);
             text-transform: uppercase;
             letter-spacing: 4px;
         }
 
-        .system-status {
-            font-family: monospace;
-            font-size: 11px;
-            letter-spacing: 1px;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 8px 16px;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-        }
-
         /* ZENTRIERTE NAVIGATION */
         .navigation-bar {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 10px 40px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 12px 40px;
             display: flex;
-            justify-content: center; /* Hier passiert die Zentrierung */
-            gap: 15px;
+            justify-content: center;
+            gap: 12px;
             border-bottom: 1px solid var(--border-color);
             flex-shrink: 0;
         }
 
         .nav-item {
             background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 10px 22px;
+            border: 1px solid transparent;
+            color: var(--text-dark);
+            padding: 10px 24px;
             border-radius: 4px;
             font-family: inherit;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
         .nav-item:hover {
-            color: #ffffff;
-            border-color: rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.02);
+            color: var(--gold-main);
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.02);
         }
 
         .nav-item.active {
-            background: var(--accent-color);
-            color: #000000;
-            border-color: var(--accent-color);
+            background: linear-gradient(135deg, var(--accent-blue), #111827);
+            color: var(--gold-main);
+            border-color: var(--gold-main);
             font-weight: 700;
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 0 10px var(--gold-glow);
         }
 
         /* Main Workspace */
@@ -153,19 +144,20 @@
             padding: 50px 60px;
             overflow-y: auto;
             box-sizing: border-box;
+            background: radial-gradient(circle at center, rgba(30, 58, 138, 0.03) 0%, transparent 70%);
         }
 
         /* Scrollbar Design */
         .content-vault::-webkit-scrollbar { width: 6px; }
         .content-vault::-webkit-scrollbar-track { background: transparent; }
-        .content-vault::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
-        .content-vault::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+        .content-vault::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.2); border-radius: 3px; }
+        .content-vault::-webkit-scrollbar-thumb:hover { background: var(--gold-main); }
 
         .content-section {
             display: none;
             max-width: 950px;
             margin: 0 auto;
-            animation: fadeIn 0.3s ease-out forwards;
+            animation: fadeIn 0.4s ease-out forwards;
         }
 
         .content-section.active {
@@ -174,7 +166,7 @@
 
         h2 {
             margin-top: 0;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 600;
             letter-spacing: 1.5px;
             margin-bottom: 30px;
@@ -182,15 +174,16 @@
             color: #fff;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         h2::before {
             content: '';
             display: inline-block;
-            width: 4px;
-            height: 18px;
-            background: var(--alert-red);
+            width: 3px;
+            height: 20px;
+            background: var(--gold-main);
+            box-shadow: 0 0 8px var(--gold-main);
         }
 
         /* Informations-Kacheln */
@@ -198,20 +191,25 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .profile-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
+            background: rgba(30, 58, 138, 0.1); /* Dunkelblau-transparent */
+            border: 1px solid rgba(212, 175, 55, 0.15);
             padding: 20px;
             border-radius: 6px;
+            transition: border-color 0.3s ease;
+        }
+
+        .profile-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
         }
 
         .card-label {
-            font-size: 10px;
+            font-size: 11px;
             text-transform: uppercase;
-            color: var(--text-secondary);
+            color: var(--gold-main);
             letter-spacing: 2px;
             margin-bottom: 6px;
         }
@@ -219,7 +217,7 @@
         .card-value {
             font-size: 16px;
             font-weight: 500;
-            color: var(--text-primary);
+            color: var(--text-bright);
         }
 
         /* Listen & Texte */
@@ -233,37 +231,37 @@
             padding-left: 25px;
             margin-bottom: 18px;
             line-height: 1.7;
-            color: #c9d1d9;
-            font-size: 15px;
+            color: #e2e8f0;
+            font-size: 15.5px;
         }
 
         li::before {
-            content: '//';
+            content: '♦';
             position: absolute;
             left: 0;
-            color: var(--text-secondary);
-            font-family: monospace;
-            font-weight: bold;
+            color: var(--gold-main);
+            font-size: 12px;
+            top: 1px;
         }
 
         p {
             line-height: 1.8;
-            color: #c9d1d9;
-            font-size: 15px;
+            color: #e2e8f0;
+            font-size: 15.5px;
         }
 
         .highlight-box {
-            background: rgba(255, 255, 255, 0.02);
-            border-left: 2px solid #ffffff;
+            background: linear-gradient(90deg, rgba(30, 58, 138, 0.2), transparent);
+            border-left: 2px solid var(--gold-main);
             padding: 20px;
             border-radius: 0 6px 6px 0;
             margin-bottom: 35px;
-            font-size: 15px;
-            color: #fff;
+            font-size: 15.5px;
+            color: #ffffff;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -282,14 +280,11 @@
     <!-- Header -->
     <div class="dashboard-header">
         <div class="brand-zone">
-            <div class="badge-icon">RESTRICTED</div>
+            <div class="badge-icon">OFFICIAL</div>
             <div class="brand-text">
                 <h1>FEDERAL INVESTIGATION BUREAU</h1>
                 <p>INTERNAL PERSONNEL DOSSIER // APPLICANT RECORD</p>
             </div>
-        </div>
-        <div class="system-status">
-            STATUS: ACTIVE DEPLOYMENT
         </div>
     </div>
 
@@ -322,7 +317,7 @@
                 </p>
             </div>
 
-            <!-- 2. INFOS ZU MIR -->
+            <!-- 2. INFOS ZU MKR -->
             <div id="about" class="content-section">
                 <h2>Infos zu Mir</h2>
                 <p>Registrierte Stammdaten zur Person Tim Cheese:</p>
@@ -404,7 +399,7 @@
                     Ich bedanke mich herzlich für Ihre Aufmerksamkeit und die Zeit, die Sie sich für das Lesen meiner Akte genommen haben. Über eine Einladung zu einem persönlichen Gespräch (OOC/IC) würde ich mich sehr freuen.
                 </p>
                 <p style="margin-top: 50px;">Hochachtungsvoll,</p>
-                <p><strong style="color: #fff;">Tim Cheese</strong><br><span style="color: var(--text-secondary); font-size: 13px;">Bewerber für das Amt des FIB Directors</span></p>
+                <p><strong style="color: var(--gold-main);">Tim Cheese</strong><br><span style="color: var(--text-dark); font-size: 13px;">Bewerber für das Amt des FIB Directors</span></p>
             </div>
 
         </div>
