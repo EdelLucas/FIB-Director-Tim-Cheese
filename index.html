@@ -3,31 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIB - Central Command Dashboard</title>
+    <title>FIB Terminal - Dossier: Tim Cheese</title>
     <style>
         :root {
-            --bg-deep: #050911;
-            --panel-bg: rgba(12, 22, 38, 0.7);
-            --accent-blue: #0088ff;
-            --text-bright: #f0f4f8;
-            --text-dark: #6c7d93;
-            --border-glass: rgba(0, 136, 255, 0.25);
-            --success-cyan: #00f2fe;
+            --bg-base: #0b0d10;
+            --bg-panel: rgba(20, 24, 30, 0.85);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #e3e7ed;
+            --text-secondary: #8491a3;
+            --accent-color: #ffffff;
+            --alert-red: #ff3b30;
+            --accent-glow: rgba(255, 255, 255, 0.05);
         }
 
-        /* Fullscreen Setup */
+        /* Fullscreen Reset */
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: var(--bg-deep);
+            background-color: var(--bg-base);
+            /* Subtiles Taktik-Raster im Hintergrund */
             background-image: 
-                radial-gradient(at 0% 0%, rgba(0, 50, 110, 0.4) 0px, transparent 60%),
-                radial-gradient(at 100% 100%, rgba(0, 25, 60, 0.5) 0px, transparent 80%);
-            font-family: 'Segoe UI', -apple-system, Roboto, sans-serif;
-            color: var(--text-bright);
+                linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
+            background-size: 30px 30px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--text-primary);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -38,16 +41,15 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            background: var(--panel-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: var(--bg-panel);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
         }
 
-        /* Cyber Header */
+        /* Minimalist Classified Header */
         .dashboard-header {
-            padding: 15px 40px;
-            background: rgba(4, 8, 15, 0.9);
-            border-bottom: 1px solid var(--border-glass);
+            padding: 25px 40px;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -57,147 +59,113 @@
         .brand-zone {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .badge-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #0055ff, #00ffaa);
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: "Courier New", Courier, monospace;
             font-weight: 900;
-            font-size: 20px;
-            color: #000;
-            box-shadow: 0 0 20px rgba(0, 136, 255, 0.4);
-            letter-spacing: 1px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            padding: 6px 12px;
+            border: 1px solid var(--alert-red);
+            color: var(--alert-red);
+            border-radius: 3px;
+            text-transform: uppercase;
         }
 
         .brand-text h1 {
             margin: 0;
-            font-size: 22px;
-            letter-spacing: 2px;
+            font-size: 20px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            font-weight: 800;
-            background: linear-gradient(to right, #ffffff, #b3d1ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 700;
         }
 
         .brand-text p {
-            margin: 2px 0 0 0;
-            font-size: 11px;
-            color: var(--accent-blue);
+            margin: 4px 0 0 0;
+            font-size: 10px;
+            color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 600;
+            letter-spacing: 4px;
         }
 
         .system-status {
-            text-align: right;
-            font-size: 11px;
             font-family: monospace;
-            color: var(--text-dark);
-            background: rgba(0, 0, 0, 0.3);
-            padding: 6px 14px;
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
         }
 
-        .pulse-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background-color: var(--success-cyan);
-            border-radius: 50%;
-            margin-right: 8px;
-            box-shadow: 0 0 10px var(--success-cyan);
-            animation: pulse 2s infinite;
-        }
-
-        /* NEU: Horizontale Navigation oben */
+        /* ZENTRIERTE NAVIGATION */
         .navigation-bar {
-            background: rgba(3, 6, 12, 0.7);
+            background: rgba(0, 0, 0, 0.2);
             padding: 10px 40px;
             display: flex;
-            gap: 10px;
-            border-bottom: 1px solid var(--border-glass);
+            justify-content: center; /* Hier passiert die Zentrierung */
+            gap: 15px;
+            border-bottom: 1px solid var(--border-color);
             flex-shrink: 0;
-            overflow-x: auto; /* Scrollbar falls die Tabs auf kleinen Bildschirmen zu lang sind */
-        }
-
-        /* Scrollbar für die Nav-Leiste verstecken */
-        .navigation-bar::-webkit-scrollbar {
-            display: none;
         }
 
         .nav-item {
             background: transparent;
-            border: 1px solid transparent;
-            color: var(--text-dark);
-            padding: 12px 20px;
-            border-radius: 6px;
-            text-align: center;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 10px 22px;
+            border-radius: 4px;
             font-family: inherit;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.25s ease;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
+            transition: all 0.2s ease;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
         .nav-item:hover {
-            background: rgba(0, 136, 255, 0.05);
             color: #ffffff;
-            border-color: rgba(0, 136, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .nav-item.active {
-            background: rgba(0, 136, 255, 0.15);
-            color: #ffffff;
-            border-color: var(--accent-blue);
-            box-shadow: inset 0 0 10px rgba(0, 136, 255, 0.1);
+            background: var(--accent-color);
+            color: #000000;
+            border-color: var(--accent-color);
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
         }
 
-        /* Arbeitsbereich (Jetzt volle Breite unter der Navigation) */
+        /* Main Workspace */
         .workspace {
             display: flex;
             flex-grow: 1;
-            height: calc(100vh - 145px); 
+            height: calc(100vh - 150px); 
         }
 
-        /* Inhaltsbereich */
         .content-vault {
             flex-grow: 1;
-            padding: 40px 60px;
-            background: rgba(6, 11, 19, 0.15);
+            padding: 50px 60px;
             overflow-y: auto;
             box-sizing: border-box;
         }
 
-        .content-vault::-webkit-scrollbar {
-            width: 8px;
-        }
-        .content-vault::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
-        }
-        .content-vault::-webkit-scrollbar-thumb {
-            background: var(--border-glass);
-            border-radius: 4px;
-        }
-        .content-vault::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-blue);
-        }
+        /* Scrollbar Design */
+        .content-vault::-webkit-scrollbar { width: 6px; }
+        .content-vault::-webkit-scrollbar-track { background: transparent; }
+        .content-vault::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+        .content-vault::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
 
         .content-section {
             display: none;
-            max-width: 1100px;
-            margin: 0 auto; /* Zentriert den Inhalt sauber im breiten Fenster */
-            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            max-width: 950px;
+            margin: 0 auto;
+            animation: fadeIn 0.3s ease-out forwards;
         }
 
         .content-section.active {
@@ -206,47 +174,55 @@
 
         h2 {
             margin-top: 0;
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-            color: #fff;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            margin-bottom: 30px;
             text-transform: uppercase;
-            border-bottom: 1px solid var(--border-glass);
-            padding-bottom: 12px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Profil-Grid */
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background: var(--alert-red);
+        }
+
+        /* Informations-Kacheln */
         .profile-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 15px;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .profile-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 20px 25px;
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 6px;
         }
 
         .card-label {
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
-            color: var(--text-dark);
-            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
             margin-bottom: 6px;
         }
 
         .card-value {
-            font-size: 17px;
-            font-weight: 600;
-            color: var(--text-bright);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-primary);
         }
 
-        /* Listen & Fließtext */
+        /* Listen & Texte */
         ul {
             padding-left: 0;
             list-style: none;
@@ -257,47 +233,46 @@
             padding-left: 25px;
             margin-bottom: 18px;
             line-height: 1.7;
-            color: #d1dbe5;
-            font-size: 16px;
+            color: #c9d1d9;
+            font-size: 15px;
         }
 
         li::before {
-            content: '';
+            content: '//';
             position: absolute;
             left: 0;
-            top: 10px;
-            width: 8px;
-            height: 8px;
-            background: var(--accent-blue);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-blue);
+            color: var(--text-secondary);
+            font-family: monospace;
+            font-weight: bold;
         }
 
         p {
             line-height: 1.8;
-            color: #d1dbe5;
-            font-size: 16px;
+            color: #c9d1d9;
+            font-size: 15px;
         }
 
         .highlight-box {
-            background: rgba(0, 136, 255, 0.05);
-            border-left: 4px solid var(--accent-blue);
-            padding: 20px 25px;
-            border-radius: 0 10px 10px 0;
-            margin-bottom: 30px;
-            font-size: 15.5px;
-            color: #bdf0ff;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 2px solid #ffffff;
+            padding: 20px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 35px;
+            font-size: 15px;
+            color: #fff;
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.4; filter: drop-shadow(0 0 2px var(--success-cyan)); }
-            50% { opacity: 1; filter: drop-shadow(0 0 8px var(--success-cyan)); }
-            100% { opacity: 0.4; filter: drop-shadow(0 0 2px var(--success-cyan)); }
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(15px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Anpassung */
+        @media (max-width: 900px) {
+            .navigation-bar { flex-wrap: wrap; justify-content: center; padding: 10px; }
+            .nav-item { font-size: 11px; padding: 8px 14px; }
+            .content-vault { padding: 30px 20px; }
+            .profile-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -307,18 +282,18 @@
     <!-- Header -->
     <div class="dashboard-header">
         <div class="brand-zone">
-            <div class="badge-icon">FIB</div>
+            <div class="badge-icon">RESTRICTED</div>
             <div class="brand-text">
-                <h1>Federal Investigation Bureau</h1>
-                <p>HQ Command Network // Recruitment Portal</p>
+                <h1>FEDERAL INVESTIGATION BUREAU</h1>
+                <p>INTERNAL PERSONNEL DOSSIER // APPLICANT RECORD</p>
             </div>
         </div>
         <div class="system-status">
-            <span class="pulse-dot"></span> SECURE TERMINAL // TIM CHEESE DOSSIER
+            STATUS: ACTIVE DEPLOYMENT
         </div>
     </div>
 
-    <!-- OBERE NAVIGATION (NEU) -->
+    <!-- ZENTRIERTE NAVIGATION -->
     <nav class="navigation-bar">
         <button class="nav-item active" onclick="openSection('intro')">Einführung</button>
         <button class="nav-item" onclick="openSection('about')">Infos zu Mir</button>
@@ -328,13 +303,13 @@
         <button class="nav-item" onclick="openSection('conclusion')">Schluss</button>
     </nav>
 
-    <!-- Arbeitsbereich -->
+    <!-- Content-Bereich -->
     <div class="workspace">
         <div class="content-vault">
             
             <!-- 1. EINFÜHRUNG -->
             <div id="intro" class="content-section active">
-                <h2>// Einführung</h2>
+                <h2>Einführung</h2>
                 <div class="highlight-box">
                     Sehr geehrte Serverleitung, sehr geehrte Review-Kommission,<br>
                     hiermit öffne ich die offizielle digitale Bewerbungsakte zur Übernahme des Federal Investigation Bureau.
@@ -349,8 +324,8 @@
 
             <!-- 2. INFOS ZU MIR -->
             <div id="about" class="content-section">
-                <h2>// Infos zu Mir</h2>
-                <p>Hier finden Sie die registrierten Stammdaten zu meiner Person (sowohl im Staat als auch außerhalb):</p>
+                <h2>Infos zu Mir</h2>
+                <p>Registrierte Stammdaten zur Person Tim Cheese:</p>
                 
                 <div class="profile-grid">
                     <div class="profile-card">
@@ -370,7 +345,7 @@
                         <div class="card-value">[Dein Discord-Tag & Ingame ID]</div>
                     </div>
                     <div class="profile-card" style="grid-column: span 2;">
-                        <div class="card-label">Bisherige Führungserfahrungen (Serverhistorie)</div>
+                        <div class="card-label">Bisherige Führungserfahrungen</div>
                         <div class="card-value">[Hier z.B. reinschreiben: 4 Monate Vize-PDler, Leader einer anderen Fraktion o.ä.]</div>
                     </div>
                 </div>
@@ -378,7 +353,7 @@
 
             <!-- 3. WARUM TIM CHEESE? -->
             <div id="why-me" class="content-section">
-                <h2>// Warum Tim Cheese?</h2>
+                <h2>Warum Tim Cheese?</h2>
                 <div class="highlight-box">
                     Die Frage ist nicht nur, wer das FIB leiten kann, sondern wer das Fundament besitzt, um die Fraktion langfristig stabil und attraktiv zu halten.
                 </div>
@@ -392,7 +367,7 @@
 
             <!-- 4. ORGAKONZEPT -->
             <div id="concept" class="content-section">
-                <h2>// Organisationskonzept</h2>
+                <h2>Organisationskonzept</h2>
                 <p>Das FIB unter meiner Leitung wird in drei spezialisierte Direktionen unterteilt, um maximale Effizienz im Arbeitsalltag zu gewährleisten:</p>
                 
                 <p><strong>1. Executive Staff (Die Führung)</strong></p>
@@ -410,7 +385,7 @@
 
             <!-- 5. DAS MÖCHTE ICH ÄNDERN -->
             <div id="changes" class="content-section">
-                <h2>// Das möchte ich Ändern</h2>
+                <h2>Das möchte ich Ändern</h2>
                 <p>Mein Ziel ist es nicht, alles Bestehende einzureißen, sondern gezielte Optimierungen vorzunehmen:</p>
                 <ul>
                     <li><strong>Qualität vor Quantität:</strong> Lieber weniger, dafür aber absolut zuverlässige und RP-starke Agenten. Die Ausbildung wird anspruchsvoller, aber dafür auch lohnender.</li>
@@ -421,7 +396,7 @@
 
             <!-- 6. SCHLUSS -->
             <div id="conclusion" class="content-section">
-                <h2>// Schlusswort</h2>
+                <h2>Schlusswort</h2>
                 <p>
                     Ein starkes FIB entsteht nicht durch ein geschriebenes Konzept, sondern durch die tägliche Umsetzung im Spiel. Ich bin bereit, die nötige Zeit, Energie und administrative Arbeit zu investieren, um diese Fraktion zu einem Aushängeschild des Servers zu machen.
                 </p>
@@ -429,7 +404,7 @@
                     Ich bedanke mich herzlich für Ihre Aufmerksamkeit und die Zeit, die Sie sich für das Lesen meiner Akte genommen haben. Über eine Einladung zu einem persönlichen Gespräch (OOC/IC) würde ich mich sehr freuen.
                 </p>
                 <p style="margin-top: 50px;">Hochachtungsvoll,</p>
-                <p><strong style="color: #fff;">Tim Cheese</strong><br><span style="color: var(--text-dark); font-size: 14px;">Bewerber für das Amt des FIB Directors</span></p>
+                <p><strong style="color: #fff;">Tim Cheese</strong><br><span style="color: var(--text-secondary); font-size: 13px;">Bewerber für das Amt des FIB Directors</span></p>
             </div>
 
         </div>
@@ -438,15 +413,12 @@
 
 <script>
     function openSection(sectionId) {
-        // Alle Inhaltsbereiche verstecken
         const blocks = document.querySelectorAll('.content-section');
         blocks.forEach(block => block.classList.remove('active'));
 
-        // Alle Nav-Items deaktivieren
         const buttons = document.querySelectorAll('.nav-item');
         buttons.forEach(btn => btn.classList.remove('active'));
 
-        // Aktuellen Bereich und Button aktivieren
         document.getElementById(sectionId).classList.add('active');
         event.currentTarget.classList.add('active');
     }
