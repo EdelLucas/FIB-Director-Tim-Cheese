@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIB Terminal - Director Application</title>
+    <style>
+        :root {
+            --fib-blue: #001f3f;
+            --fib-glow: #0077ff;
+            --fib-text: #00ffcc;
+            --bg-dark: #0a0f1d;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--fib-text);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Terminal Gehäuse */
+        .terminal {
+            width: 100%;
+            max-width: 900px;
+            background: linear-gradient(135deg, #050b14, #101b2b);
+            border: 2px solid var(--fib-glow);
+            box-shadow: 0 0 20px rgba(0, 119, 255, 0.5);
+            border-radius: 8px;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+
+        /* Header */
+        .terminal-header {
+            border-bottom: 2px dashed var(--fib-glow);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .terminal-header h1 {
+            margin: 5px 0;
+            font-size: 24px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .security-alert {
+            color: #ff3333;
+            font-weight: bold;
+            animation: blink 1.5s infinite;
+        }
+
+        /* Navigations-Zentrale */
+        .nav-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .nav-btn {
+            background: rgba(0, 31, 63, 0.6);
+            border: 1px solid var(--fib-glow);
+            color: var(--fib-text);
+            padding: 12px;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--fib-glow);
+            color: #fff;
+            box-shadow: 0 0 10px var(--fib-glow);
+            text-shadow: 0 0 5px #fff;
+        }
+
+        /* Inhalts-Bildschirm */
+        .screen-content {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 119, 255, 0.3);
+            padding: 20px;
+            border-radius: 4px;
+            min-height: 300px;
+            line-height: 1.6;
+        }
+
+        .data-block {
+            display: none;
+            animation: fadeIn 0.5s ease-forward;
+        }
+
+        .data-block.active {
+            display: block;
+        }
+
+        h3 {
+            color: #fff;
+            border-bottom: 1px solid var(--fib-glow);
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: " > ";
+            padding-left: 20px;
+        }
+
+        /* Status-Anzeige */
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #00ff55;
+            color: #000;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        /* Animationen */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="terminal">
+    <div class="terminal-header">
+        <h1>Federal Investigation Bureau</h1>
+        <p>Zentralcomputer // Zugriffsebene: <span class="security-alert">TOP SECRET</span></p>
+        <p>Bewerbungs-Akte: <strong>Posten des Director of FIB</strong></p>
+    </div>
+
+    <!-- Interaktives Menü -->
+    <div class="nav-matrix">
+        <button class="nav-btn active" onclick="openSection('personal')">01. Personalakte</button>
+        <button class="nav-btn" onclick="openSection('experience')">02. Qualifikationen</button>
+        <button class="nav-btn" onclick="openSection('concept')">03. Fraktionskonzept</button>
+        <button class="nav-btn" onclick="openSection('motivation')">04. Motivationsschreiben</button>
+    </div>
+
+    <!-- Bildschirm-Ausgabe -->
+    <div class="screen-content">
+        
+        <!-- SEKTION 1: Personalakte -->
+        <div id="personal" class="data-block active">
+            <h3>[STAMMDATEN BLATT]</h3>
+            <p><strong>Name:</strong> [Dein IC Name]</p>
+            <p><strong>Alter (IC):</strong> [Z.B. 34 Jahre]</p>
+            <p><strong>OOC Name / Alter:</strong> [Dein echter Name / Alter]</p>
+            <p><strong>Dienstnummer:</strong> [Deine Wunschnummer oder aktuelle Nummer]</p>
+            <p><strong>Aktueller Rang:</strong> [Z.B. Assistant Director oder Co-Leader im PD]</p>
+            <p><strong>Sicherheitsstatus:</strong> <span class="status-badge">BESTÄTIGT</span></p>
+        </div>
+
+        <!-- SEKTION 2: Erfahrung -->
+        <div id="experience" class="data-block">
+            <h3>[DIENSTLICHER WERDEGANG & ERFAHRUNGEN]</h3>
+            <p>Hier trägst du deine bisherigen Stationen auf dem Server (oder anderen Servern) ein:</p>
+            <ul>
+                <li><strong>LSPD / San Andreas Highway Patrol:</strong> [Z.B. 6 Monate als Captain - Leitung der Ermittlungsabteilung]</li>
+                <li><strong>FIB Erfahrung:</strong> [Z.B. Senior Agent unter der alten Führung - Fokus auf Korruptionsermittlung]</li>
+                <li><strong>Führungskompetenz:</strong> Erfahrung in der Ausarbeitung von Dienstvorschriften, Verhandlungsführung und strategischer Einsatzplanung.</li>
+            </ul>
+        </div>
+
+        <!-- SEKTION 3: Konzept -->
+        <div id="concept" class="data-block">
+            <h3>[STRATEGISCHES FRAKTIONSKONZEPT]</h3>
+            <p>Was willst du als Director verändern? Hier ist Platz für deine Visionen:</p>
+            
+            <strong>1. Strukturierung der Abteilungen:</strong>
+            <ul>
+                <li><strong>HR / Ausbildung:</strong> Strukturierte Rekrutierung und harte, realistische Ausbildungsmethoden.</li>
+                <li><strong>Undercover & Intelligence:</strong> Fokus auf Langzeitermittlungen gegen Mafia- und Gangstrukturen statt reinem "Streifendienst".</li>
+                <li><strong>Internal Affairs:</strong> Kompromisslose Korruptionsbekämpfung in staatlichen Organisationen.</li>
+            </ul>
+
+            <strong>2. Zusammenarbeit mit dem LSPD / Sheriff Office:</strong>
+            <p>Das FIB wird unter meiner Leitung als übergeordnete Bundesbehörde agieren – unterstützend bei Großlagen, federführend bei Ermittlungen, aber immer auf Augenhöhe im Datenaustausch.</p>
+        </div>
+
+        <!-- SEKTION 4: Motivation -->
+        <div id="motivation" class="data-block">
+            <h3>[MOTIVATIONSSCHREIBEN]</h3>
+            <p>Sehr geehrte Serverleitung, sehr geehrter Personalrat,</p>
+            <p>
+                das FIB benötigt eine Führung, die nicht nur Befehle erteilt, sondern die Behörde als Mentor und Stratege nach vorne bringt. Durch meine langjährige Erfahrung im staatlichen Sektor kenne ich die Schwachstellen im aktuellen System und weiß, wie man die Motivation der Agenten langfristig hochhält.
+            </p>
+            <p>
+                Mein Ziel ist es nicht, das Rad neu zu erfinden, sondern ein funktionierendes, diszipliniertes und respektiertes FIB aufzubauen, das im Roleplay Maßstäbe setzt.
+            </p>
+            <p>Über eine Einladung zu einem persönlichen Gespräch (UnRP-Gespräch) freue ich mich.</p>
+            <p>Hochachtungsvoll,<br><strong>[Dein Name]</strong></p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function openSection(sectionId) {
+        // Alle Inhaltsblöcke ausblenden
+        const blocks = document.querySelectorAll('.data-block');
+        blocks.forEach(block => block.classList.remove('active'));
+
+        // Alle Buttons deaktivieren
+        const buttons = document.querySelectorAll('.nav-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        // Gewählten Block und Button aktivieren
+        document.getElementById(sectionId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
