@@ -26,15 +26,14 @@
             background-color: var(--bg-deep);
             
             /* --- HIER DEIN EIGENES BILD ANPASSEN --- */
-            /* Erstelle einen Ordner namens "bilder" neben dieser HTML-Datei und lege dein Bild dort als "hintergrund.jpg" ab */
             background-image: 
-                linear-gradient(rgba(3, 4, 6, 0.85), rgba(3, 4, 6, 0.85)), /* Schwarzer Schutzschleier für Text-Lesbarkeit */
-                url('fib8.jpg'); 
+                linear-gradient(rgba(3, 4, 6, 0.85), rgba(3, 4, 6, 0.85)), 
+                url('bilder/hintergrund.jpg'); 
             
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-blend-mode: multiply; /* Verblendet das Bild edel mit der Hintergrundfarbe */
+            background-blend-mode: multiply;
             
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: var(--text-bright);
@@ -49,7 +48,7 @@
             display: flex;
             flex-direction: column;
             background: var(--bg-panel);
-            backdrop-filter: blur(15px); /* Macht den Hintergrund hinter dem Panel leicht unscharf */
+            backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
         }
 
@@ -177,7 +176,7 @@
             font-size: 24px;
             font-weight: 600;
             letter-spacing: 1.5px;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             text-transform: uppercase;
             color: #fff;
             display: flex;
@@ -194,16 +193,35 @@
             box-shadow: 0 0 8px var(--gold-main);
         }
 
+        h3 {
+            font-size: 14px;
+            color: var(--gold-main);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed rgba(212, 175, 55, 0.2);
+            padding-bottom: 5px;
+        }
+
         /* Informations-Kacheln */
         .profile-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        /* 3er-Spalten-Layout für die OOC-Sachen */
+        .profile-grid-ooc {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .profile-card {
-            background: rgba(30, 58, 138, 0.12); /* Dunkelblau-transparent */
+            background: rgba(30, 58, 138, 0.12);
             border: 1px solid rgba(212, 175, 55, 0.15);
             padding: 20px;
             border-radius: 6px;
@@ -223,7 +241,7 @@
         }
 
         .card-value {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
             color: var(--text-bright);
         }
@@ -278,7 +296,7 @@
             .navigation-bar { flex-wrap: wrap; justify-content: center; padding: 10px; }
             .nav-item { font-size: 11px; padding: 8px 14px; }
             .content-vault { padding: 30px 20px; }
-            .profile-grid { grid-template-columns: 1fr; }
+            .profile-grid, .profile-grid-ooc { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -328,28 +346,45 @@
             <!-- 2. INFOS ZU MIR -->
             <div id="about" class="content-section">
                 <h2>Infos zu Mir</h2>
-                <p>Registrierte Stammdaten zur Person Tim Cheese:</p>
+                <p>Registrierte Personalstammdaten des Bewerbers:</p>
                 
+                <h3>OOC-Sektion (Out-Of-Character)</h3>
+                <div class="profile-grid-ooc">
+                    <div class="profile-card">
+                        <div class="card-label">Name (OOC)</div>
+                        <div class="card-value">[DEINEN ECHTEN VORNAMEN HIER EINTRAGEN]</div>
+                    </div>
+                    <div class="profile-card">
+                        <div class="card-label">Alter</div>
+                        <div class="card-value">[DEIN ECHTES ALTER HIER EINTRAGEN, Z.B. 22 JAHRE]</div>
+                    </div>
+                    <div class="profile-card">
+                        <div class="card-label">Discord</div>
+                        <div class="card-value">[DEIN DISCORD-NICKNAME HIER EINTRAGEN, Z.B. tim_cheese]</div>
+                    </div>
+                </div>
+
+                <h3>IC-Sektion (In-Character)</h3>
                 <div class="profile-grid">
                     <div class="profile-card">
-                        <div class="card-label">Name (In-Character)</div>
+                        <div class="card-label">Name (IC)</div>
                         <div class="card-value">Tim Cheese</div>
                     </div>
                     <div class="profile-card">
-                        <div class="card-label">Lebensalter (IC)</div>
-                        <div class="card-value">[Trage dein IC-Alter ein, z.B. 32 Jahre]</div>
+                        <div class="card-label">ID</div>
+                        <div class="card-value">[DEINE INGAME-ID HIER EINTRAGEN, Z.B. 48392]</div>
                     </div>
                     <div class="profile-card">
-                        <div class="card-label">Name / Alter (OOC)</div>
-                        <div class="card-value">[Dein echter Vorname / Alter]</div>
+                        <div class="card-label">Visum</div>
+                        <div class="card-value">[DEINE VISUMSSTUFE HIER EINTRAGEN, Z.B. STUFE 25]</div>
                     </div>
                     <div class="profile-card">
-                        <div class="card-label">Discord / ID</div>
-                        <div class="card-value">[Dein Discord-Tag & Ingame ID]</div>
+                        <div class="card-label">Onlinezeit</div>
+                        <div class="card-value">[DEINE TÄGLICHE ONLINEZEIT HIER EINTRAGEN, Z.B. ca. 4-6 STUNDEN TÄGLICH]</div>
                     </div>
                     <div class="profile-card" style="grid-column: span 2;">
                         <div class="card-label">Bisherige Führungserfahrungen</div>
-                        <div class="card-value">[Hier z.B. reinschreiben: 4 Monate Vize-PDler, Leader einer anderen Fraktion o.ä.]</div>
+                        <div class="card-value">[HIER DEINE ÄMTER AUFZÄHLEN, Z.B.: 4 MONATE VIZE-LEITER BEIM LSPD / 2 MONATE ABTEILUNGSLEITER IM FIB]</div>
                     </div>
                 </div>
             </div>
