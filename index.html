@@ -3,84 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIB - Command Dashboard</title>
+    <title>FIB - Central Command Dashboard</title>
     <style>
         :root {
-            --bg-deep: #060b13;
-            --panel-bg: rgba(16, 26, 43, 0.6);
+            --bg-deep: #050911;
+            --panel-bg: rgba(12, 22, 38, 0.7);
             --accent-blue: #0088ff;
             --text-bright: #f0f4f8;
-            --text-dark: #8a99ad;
-            --border-glass: rgba(0, 136, 255, 0.2);
+            --text-dark: #6c7d93;
+            --border-glass: rgba(0, 136, 255, 0.25);
             --success-cyan: #00f2fe;
         }
 
-        body {
+        /* Fullscreen Setup */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Verhindert das Scrollen der gesamten Seite */
             background-color: var(--bg-deep);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(0, 40, 85, 0.3) 0px, transparent 50%),
-                radial-gradient(at 50% 100%, rgba(0, 20, 50, 0.4) 0px, transparent 70%);
-            color: var(--text-bright);
+                radial-gradient(at 0% 0%, rgba(0, 50, 110, 0.4) 0px, transparent 60%),
+                radial-gradient(at 100% 100%, rgba(0, 25, 60, 0.5) 0px, transparent 80%);
             font-family: 'Segoe UI', -apple-system, Roboto, sans-serif;
-            margin: 0;
-            padding: 30px 15px;
+            color: var(--text-bright);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
         }
 
-        /* Haupt-Zentrale */
+        /* Das Dashboard füllt jetzt den kompletten Bildschirm aus */
         .dashboard-container {
-            width: 100%;
-            max-width: 1000px;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
             background: var(--panel-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-glass);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
-            border-radius: 12px;
-            overflow: hidden;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
         /* Cyber Header */
         .dashboard-header {
-            padding: 25px 35px;
-            background: linear-gradient(90deg, rgba(10, 20, 38, 0.8), rgba(6, 11, 19, 0.4));
+            padding: 20px 40px;
+            background: rgba(4, 8, 15, 0.8);
             border-bottom: 1px solid var(--border-glass);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-shrink: 0; /* Header behält immer seine feste Höhe */
         }
 
         .brand-zone {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 20px;
         }
 
         .badge-icon {
-            width: 55px;
-            height: 55px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, #0055ff, #00ffaa);
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: 900;
-            font-size: 20px;
+            font-size: 22px;
             color: #000;
-            box-shadow: 0 0 15px rgba(0, 136, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 136, 255, 0.4);
             letter-spacing: 1px;
         }
 
         .brand-text h1 {
             margin: 0;
-            font-size: 20px;
-            letter-spacing: 1.5px;
+            font-size: 24px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 800;
-            background: linear-gradient(to right, #ffffff, #a5c7ff);
+            background: linear-gradient(to right, #ffffff, #b3d1ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -90,59 +92,67 @@
             font-size: 11px;
             color: var(--accent-blue);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             font-weight: 600;
         }
 
         .system-status {
             text-align: right;
-            font-size: 11px;
+            font-size: 12px;
             font-family: monospace;
             color: var(--text-dark);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .pulse-dot {
             display: inline-block;
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             background-color: var(--success-cyan);
             border-radius: 50%;
-            margin-right: 5px;
-            box-shadow: 0 0 8px var(--success-cyan);
+            margin-right: 8px;
+            box-shadow: 0 0 10px var(--success-cyan);
             animation: pulse 2s infinite;
         }
 
-        /* 2-Spalten-Layout */
+        /* Arbeitsbereich nimmt den Rest des Bildschirms ein */
         .workspace {
             display: flex;
+            flex-grow: 1;
+            height: calc(100vh - 101px); /* Dynamische Resthöhe */
         }
 
-        /* Hochmoderne Sidebar-Nav */
+        /* Feste Sidebar links */
         .navigation-rail {
-            width: 260px;
-            background: rgba(4, 8, 15, 0.5);
-            padding: 30px 15px;
+            width: 300px;
+            background: rgba(3, 6, 12, 0.6);
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            border-right: 1px solid rgba(255, 255, 255, 0.03);
+            gap: 12px;
+            border-right: 1px solid var(--border-glass);
+            flex-shrink: 0;
         }
 
         .nav-item {
             background: transparent;
             border: 1px solid transparent;
             color: var(--text-dark);
-            padding: 14px 20px;
+            padding: 16px 24px;
             border-radius: 8px;
             text-align: left;
             font-family: inherit;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.25s ease;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            letter-spacing: 1px;
         }
 
         .nav-item:hover {
@@ -155,7 +165,7 @@
             background: rgba(0, 136, 255, 0.15);
             color: #ffffff;
             border-color: var(--accent-blue);
-            box-shadow: inset 0 0 10px rgba(0, 136, 255, 0.1);
+            box-shadow: inset 0 0 15px rgba(0, 136, 255, 0.1);
         }
 
         .nav-item::after {
@@ -171,16 +181,33 @@
             color: var(--success-cyan);
         }
 
-        /* Haupt-Inhalt */
+        /* Inhaltstresor mit eigenem Scrollbar */
         .content-vault {
             flex-grow: 1;
-            padding: 40px;
-            background: rgba(6, 11, 19, 0.2);
-            min-height: 400px;
+            padding: 50px 60px;
+            background: rgba(6, 11, 19, 0.15);
+            overflow-y: auto; /* Nur der Textbereich scrollt, wenn er zu lang wird */
+            box-sizing: border-box;
+        }
+
+        /* Custom Scrollbar für den High-Tech-Look */
+        .content-vault::-webkit-scrollbar {
+            width: 8px;
+        }
+        .content-vault::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .content-vault::-webkit-scrollbar-thumb {
+            background: var(--border-glass);
+            border-radius: 4px;
+        }
+        .content-vault::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-blue);
         }
 
         .content-section {
             display: none;
+            max-width: 1000px; /* Verhindert, dass Text auf Riesen-Monitoren zu breit läuft */
             animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
@@ -190,37 +217,41 @@
 
         h2 {
             margin-top: 0;
-            font-size: 22px;
+            font-size: 26px;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 25px;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
             color: #fff;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-glass);
+            padding-bottom: 15px;
         }
 
         /* Profil-Grid */
         .profile-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 20px;
         }
 
         .profile-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 16px 20px;
-            border-radius: 8px;
+            padding: 20px 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
         }
 
         .card-label {
             font-size: 11px;
             text-transform: uppercase;
             color: var(--text-dark);
-            letter-spacing: 1px;
-            margin-bottom: 4px;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
         }
 
         .card-value {
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 600;
             color: var(--text-bright);
         }
@@ -233,63 +264,68 @@
 
         li {
             position: relative;
-            padding-left: 20px;
-            margin-bottom: 15px;
-            line-height: 1.6;
+            padding-left: 25px;
+            margin-bottom: 20px;
+            line-height: 1.7;
             color: #d1dbe5;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         li::before {
             content: '';
             position: absolute;
             left: 0;
-            top: 8px;
-            width: 6px;
-            height: 6px;
+            top: 10px;
+            width: 8px;
+            height: 8px;
             background: var(--accent-blue);
             border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-blue);
         }
 
         p {
-            line-height: 1.7;
+            line-height: 1.8;
             color: #d1dbe5;
-            font-size: 14.5px;
+            font-size: 16px;
         }
 
         .highlight-box {
-            background: rgba(0, 136, 255, 0.04);
-            border-left: 3px solid var(--accent-blue);
-            padding: 15px 20px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 25px;
+            background: rgba(0, 136, 255, 0.05);
+            border-left: 4px solid var(--accent-blue);
+            padding: 20px 25px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 35px;
+            font-size: 15.5px;
+            color: #bdf0ff;
         }
 
         /* Animationen */
         @keyframes pulse {
-            0% { opacity: 0.4; }
-            50% { opacity: 1; }
-            100% { opacity: 0.4; }
+            0% { opacity: 0.4; filter: drop-shadow(0 0 2px var(--success-cyan)); }
+            50% { opacity: 1; filter: drop-shadow(0 0 8px var(--success-cyan)); }
+            100% { opacity: 0.4; filter: drop-shadow(0 0 2px var(--success-cyan)); }
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .workspace { flex-direction: column; }
-            .navigation-rail { width: 100%; box-sizing: border-box; }
+        /* Responsive Layout für Handys falls nötig */
+        @media (max-width: 900px) {
+            .workspace { flex-direction: column; height: auto; overflow-y: auto; }
+            .navigation-rail { width: 100%; padding: 20px; border-right: none; border-bottom: 1px solid var(--border-glass); }
+            .content-vault { overflow-y: visible; padding: 30px 20px; }
+            body, html { overflow: auto; height: auto; }
+            .dashboard-container { height: auto; min-height: 100vh; }
             .profile-grid { grid-template-columns: 1fr; }
-            .dashboard-header { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
 <div class="dashboard-container">
-    <!-- HQ Header -->
+    <!-- Fullscreen Header -->
     <div class="dashboard-header">
         <div class="brand-zone">
             <div class="badge-icon">FIB</div>
@@ -299,14 +335,14 @@
             </div>
         </div>
         <div class="system-status">
-            <span class="pulse-dot"></span> SECURE CONNECTION // ACTIVE
+            <span class="pulse-dot"></span> SECURE TERMINAL // ACCESS GRANTED
         </div>
     </div>
 
     <!-- Interface Workspace -->
     <div class="workspace">
         
-        <!-- Sidebar Navigation -->
+        <!-- Fixierte linke Sidebar -->
         <nav class="navigation-rail">
             <button class="nav-item active" onclick="openSection('personal')">01 // DOSSIER</button>
             <button class="nav-item" onclick="openSection('experience')">02 // QUALIFIKATIONEN</button>
@@ -314,14 +350,14 @@
             <button class="nav-item" onclick="openSection('motivation')">04 // ANSCHREIBEN</button>
         </nav>
 
-        <!-- Main Content Vault -->
+        <!-- Rechter, scrollbarer Inhaltsbereich -->
         <div class="content-vault">
             
             <!-- SEKTION 1: Personalakte -->
             <div id="personal" class="content-section active">
                 <h2>01 // Stammdaten & Identifikation</h2>
                 <div class="highlight-box">
-                    Die nachfolgenden Daten wurden vom internen Personalsystem verifiziert und freigegeben.
+                    Die nachfolgenden Daten wurden vom internen Personalsystem der Bundesbehörde verifiziert und freigegeben.
                 </div>
                 <div class="profile-grid">
                     <div class="profile-card">
@@ -342,7 +378,7 @@
                     </div>
                     <div class="profile-card" style="grid-column: span 2;">
                         <div class="card-label">Aktueller Status im Staat</div>
-                        <div class="card-value">[Z.B. Assistant Director]</div>
+                        <div class="card-value">[Z.B. Assistant Director oder Co-Leader im PD]</div>
                     </div>
                 </div>
             </div>
@@ -352,8 +388,8 @@
                 <h2>02 // Dienstlicher Werdegang</h2>
                 <p>Auszug aus den Dienstakten vorangegangener Verwendungen innerhalb staatlicher Sicherheitsorgane:</p>
                 <ul>
-                    <li><strong>San Andreas Highway Patrol (Dienstzeit: 6 Monate)</strong><br><span style="color: var(--text-dark); font-size: 13px;">Einsatzrang: Captain // Führung der Ermittlungskommission</span></li>
-                    <li><strong>Federal Investigation Bureau (Dienstzeit: 3 Monate)</strong><br><span style="color: var(--text-dark); font-size: 13px;">Einsatzrang: Special Agent in Charge // Task Force Organisierte Kriminalität</span></li>
+                    <li><strong>San Andreas Highway Patrol (Dienstzeit: 6 Monate)</strong><br><span style="color: var(--text-dark); font-size: 14px;">Einsatzrang: Captain // Führung der Ermittlungskommission</span></li>
+                    <li><strong>Federal Investigation Bureau (Dienstzeit: 3 Monate)</strong><br><span style="color: var(--text-dark); font-size: 14px;">Einsatzrang: Special Agent in Charge // Task Force Organisierte Kriminalität</span></li>
                     <li><strong>Führungsprofil:</strong> Langjährige Erfahrung in administrativer Fraktionsarbeit, der Koordination von taktischen Zugriffen und Krisenverhandlungen auf Landesebene.</li>
                 </ul>
             </div>
@@ -362,7 +398,7 @@
             <div id="concept" class="content-section">
                 <h2>03 // Strategisches Behördenkonzept</h2>
                 <div class="highlight-box">
-                    Zielsetzung: Die Neuausrichtung des FIB als spezialisiertes, hochkompetentes Ermittlungsorgan mit klarem Fokus auf Deep-Roleplay.
+                    Zielsetzung: Die Neuausrichtung des FIB als spezialisiertes, hochkompetentes Ermittlungsorgan mit klarem Fokus auf tiefgründiges Ermittlungs-Roleplay.
                 </div>
                 
                 <p><strong>1. Strukturierung der Sektionen</strong></p>
@@ -387,8 +423,8 @@
                     Durch meine umfassende Vorerfahrung im exekutiven Bereich kenne ich die Mechaniken und Herausforderungen von Staatsfraktionen im Detail. Mein Konzept zielt darauf ab, die Balance zwischen harter Disziplin und spielerischer Attraktivität für alle Beteiligten zu maximieren.
                 </p>
                 <p>Ich bedanke mich für die Sichtung meiner Akte und stehe für eine persönliche Strategiebesprechung im Discord/Teamspeak bereit.</p>
-                <p style="margin-top: 30px;">Hochachtungsvoll,</p>
-                <p><strong style="color: #fff;">[Dein Name]</strong><br><span style="color: var(--text-dark); font-size: 13px;">Bewerber für das Amt des Directors</span></p>
+                <p style="margin-top: 40px;">Hochachtungsvoll,</p>
+                <p><strong style="color: #fff;">[Dein Name]</strong><br><span style="color: var(--text-dark); font-size: 14px;">Bewerber für das Amt des Directors</span></p>
             </div>
 
         </div>
