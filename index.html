@@ -3,228 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIB Terminal - Director Application</title>
+    <title>Federal Investigation Bureau - Intranet Portal</title>
     <style>
         :root {
-            --fib-blue: #001f3f;
-            --fib-glow: #0077ff;
-            --fib-text: #00ffcc;
-            --bg-dark: #0a0f1d;
+            --gov-blue: #0A2540;
+            --gov-blue-light: #1A365D;
+            --gov-accent: #2B6CB0;
+            --bg-light: #F7FAFC;
+            --text-main: #2D3748;
+            --text-muted: #718096;
+            --border-color: #E2E8F0;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--fib-text);
-            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Terminal Gehäuse */
-        .terminal {
+        /* Dokumenten-Container im Akten-Stil */
+        .portal-container {
             width: 100%;
-            max-width: 900px;
-            background: linear-gradient(135deg, #050b14, #101b2b);
-            border: 2px solid var(--fib-glow);
-            box-shadow: 0 0 20px rgba(0, 119, 255, 0.5);
-            border-radius: 8px;
-            padding: 25px;
-            box-sizing: border-box;
+            max-width: 950px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-radius: 6px;
+            overflow: hidden;
         }
 
-        /* Header */
-        .terminal-header {
-            border-bottom: 2px dashed var(--fib-glow);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            text-align: center;
+        /* Offizieller Header */
+        .portal-header {
+            background-color: var(--gov-blue);
+            color: #ffffff;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            border-bottom: 4px solid var(--gov-accent);
         }
 
-        .terminal-header h1 {
-            margin: 5px 0;
-            font-size: 24px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .security-alert {
-            color: #ff3333;
+        .header-logo {
+            width: 70px;
+            height: 70px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-weight: bold;
-            animation: blink 1.5s infinite;
+            font-size: 20px;
+            background: var(--gov-blue-light);
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
 
-        /* Navigations-Zentrale */
-        .nav-matrix {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 10px;
-            margin-bottom: 25px;
+        .header-text h1 {
+            margin: 0 0 5px 0;
+            font-size: 22px;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+
+        .header-text p {
+            margin: 0;
+            font-size: 13px;
+            color: #A0AEC0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sub-Bar für Metadaten */
+        .meta-bar {
+            background: #EDF2F7;
+            padding: 12px 30px;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Haupt-Layout mit Sidebar-Navigation */
+        .main-layout {
+            display: flex;
+            min-height: 450px;
+        }
+
+        /* Navigation links */
+        .sidebar-nav {
+            width: 250px;
+            background: #F8FAFC;
+            border-right: 1px solid var(--border-color);
+            padding: 20px 0;
+            flex-shrink: 0;
         }
 
         .nav-btn {
-            background: rgba(0, 31, 63, 0.6);
-            border: 1px solid var(--fib-glow);
-            color: var(--fib-text);
-            padding: 12px;
+            width: 100%;
+            background: none;
+            border: none;
+            border-left: 4px solid transparent;
+            color: var(--text-main);
+            padding: 14px 24px;
+            text-align: left;
             font-family: inherit;
-            font-weight: bold;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
+            transition: all 0.2s ease;
         }
 
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--fib-glow);
-            color: #fff;
-            box-shadow: 0 0 10px var(--fib-glow);
-            text-shadow: 0 0 5px #fff;
+        .nav-btn:hover {
+            background: #EDF2F7;
+            color: var(--gov-accent);
         }
 
-        /* Inhalts-Bildschirm */
-        .screen-content {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(0, 119, 255, 0.3);
-            padding: 20px;
-            border-radius: 4px;
-            min-height: 300px;
-            line-height: 1.6;
+        .nav-btn.active {
+            background: #EBF8FF;
+            color: var(--gov-accent);
+            border-left-color: var(--gov-accent);
+        }
+
+        /* Inhaltsbereich rechts */
+        .content-area {
+            flex-grow: 1;
+            padding: 40px;
+            background: #ffffff;
         }
 
         .data-block {
             display: none;
-            animation: fadeIn 0.5s ease-forward;
         }
 
         .data-block.active {
             display: block;
         }
 
-        h3 {
-            color: #fff;
-            border-bottom: 1px solid var(--fib-glow);
-            padding-bottom: 5px;
-            margin-top: 20px;
+        /* Typografie im Dokument */
+        h2 {
+            margin-top: 0;
+            color: var(--gov-blue);
+            font-size: 20px;
+            border-bottom: 2px solid #E2E8F0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .info-table td {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 15px;
+        }
+
+        .info-table td.label {
+            font-weight: 600;
+            color: var(--text-muted);
+            width: 35%;
+        }
+
+        .status-pill {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #C6F6D5;
+            color: #22543D;
+            font-weight: 600;
+            border-radius: 20px;
+            font-size: 13px;
         }
 
         ul {
-            list-style-type: " > ";
             padding-left: 20px;
+            line-height: 1.7;
         }
 
-        /* Status-Anzeige */
-        .status-badge {
-            display: inline-block;
-            padding: 3px 8px;
-            background: #00ff55;
-            color: #000;
-            font-weight: bold;
-            border-radius: 3px;
-            font-size: 12px;
+        li {
+            margin-bottom: 10px;
         }
 
-        /* Animationen */
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
+        p {
+            line-height: 1.7;
+            font-size: 15px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Responsive Anpassung für kleinere Bildschirme */
+        @media (max-width: 768px) {
+            .main-layout {
+                flex-direction: column;
+            }
+            .sidebar-nav {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 10px 0;
+            }
+            .portal-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-logo {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="terminal">
-    <div class="terminal-header">
-        <h1>Federal Investigation Bureau</h1>
-        <p>Zentralcomputer // Zugriffsebene: <span class="security-alert">TOP SECRET</span></p>
-        <p>Bewerbungs-Akte: <strong>Posten des Director of FIB</strong></p>
+<div class="portal-container">
+    <!-- Behörden Header -->
+    <div class="portal-header">
+        <div class="header-logo">FIB</div>
+        <div class="header-text">
+            <h1>Federal Investigation Bureau</h1>
+            <p>Internal Personnel Management System // Recruitment</p>
+        </div>
     </div>
 
-    <!-- Interaktives Menü -->
-    <div class="nav-matrix">
-        <button class="nav-btn active" onclick="openSection('personal')">01. Personalakte</button>
-        <button class="nav-btn" onclick="openSection('experience')">02. Qualifikationen</button>
-        <button class="nav-btn" onclick="openSection('concept')">03. Fraktionskonzept</button>
-        <button class="nav-btn" onclick="openSection('motivation')">04. Motivationsschreiben</button>
+    <!-- Metadaten Leiste -->
+    <div class="meta-bar">
+        <div><strong>Dokument:</strong> FIB-DIR-APP_2026</div>
+        <div><strong>Klassifizierung:</strong> Offizielles Dienstschreiben</div>
     </div>
 
-    <!-- Bildschirm-Ausgabe -->
-    <div class="screen-content">
+    <!-- Hauptbereich -->
+    <div class="main-layout">
         
-        <!-- SEKTION 1: Personalakte -->
-        <div id="personal" class="data-block active">
-            <h3>[STAMMDATEN BLATT]</h3>
-            <p><strong>Name:</strong> [Dein IC Name]</p>
-            <p><strong>Alter (IC):</strong> [Z.B. 34 Jahre]</p>
-            <p><strong>OOC Name / Alter:</strong> [Dein echter Name / Alter]</p>
-            <p><strong>Dienstnummer:</strong> [Deine Wunschnummer oder aktuelle Nummer]</p>
-            <p><strong>Aktueller Rang:</strong> [Z.B. Assistant Director oder Co-Leader im PD]</p>
-            <p><strong>Sicherheitsstatus:</strong> <span class="status-badge">BESTÄTIGT</span></p>
-        </div>
+        <!-- Linkes Navigationsmenü -->
+        <nav class="sidebar-nav">
+            <button class="nav-btn active" onclick="openSection('personal')">G-1: Personalakte</button>
+            <button class="nav-btn" onclick="openSection('experience')">G-2: Qualifikationen</button>
+            <button class="nav-btn" onclick="openSection('concept')">G-3: Fraktionskonzept</button>
+            <button class="nav-btn" onclick="openSection('motivation')">G-4: Dienstliches Schreiben</button>
+        </nav>
 
-        <!-- SEKTION 2: Erfahrung -->
-        <div id="experience" class="data-block">
-            <h3>[DIENSTLICHER WERDEGANG & ERFAHRUNGEN]</h3>
-            <p>Hier trägst du deine bisherigen Stationen auf dem Server (oder anderen Servern) ein:</p>
-            <ul>
-                <li><strong>LSPD / San Andreas Highway Patrol:</strong> [Z.B. 6 Monate als Captain - Leitung der Ermittlungsabteilung]</li>
-                <li><strong>FIB Erfahrung:</strong> [Z.B. Senior Agent unter der alten Führung - Fokus auf Korruptionsermittlung]</li>
-                <li><strong>Führungskompetenz:</strong> Erfahrung in der Ausarbeitung von Dienstvorschriften, Verhandlungsführung und strategischer Einsatzplanung.</li>
-            </ul>
-        </div>
-
-        <!-- SEKTION 3: Konzept -->
-        <div id="concept" class="data-block">
-            <h3>[STRATEGISCHES FRAKTIONSKONZEPT]</h3>
-            <p>Was willst du als Director verändern? Hier ist Platz für deine Visionen:</p>
+        <!-- Rechter Inhaltsbildschirm -->
+        <div class="content-area">
             
-            <strong>1. Strukturierung der Abteilungen:</strong>
-            <ul>
-                <li><strong>HR / Ausbildung:</strong> Strukturierte Rekrutierung und harte, realistische Ausbildungsmethoden.</li>
-                <li><strong>Undercover & Intelligence:</strong> Fokus auf Langzeitermittlungen gegen Mafia- und Gangstrukturen statt reinem "Streifendienst".</li>
-                <li><strong>Internal Affairs:</strong> Kompromisslose Korruptionsbekämpfung in staatlichen Organisationen.</li>
-            </ul>
+            <!-- SEKTION 1: Personalakte -->
+            <div id="personal" class="data-block active">
+                <h2>Stammdatenblatt (IC / OOC)</h2>
+                <table class="info-table">
+                    <tr>
+                        <td class="label">Name (In-Character)</td>
+                        <td>[Dein IC Name]</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Alter (In-Character)</td>
+                        <td>[Z.B. 34 Jahre]</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Name / Alter (OOC)</td>
+                        <td>[Dein echter Name / Alter]</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Angestrebte Dienstnummer</td>
+                        <td>[Deine Wunschnummer]</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Aktueller Dienstgrad</td>
+                        <td>[Z.B. Assistant Director]</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Sicherheitsüberprüfung</td>
+                        <td><span class="status-pill">BESTÄTIGT (LEVEL 5)</span></td>
+                    </tr>
+                </table>
+            </div>
 
-            <strong>2. Zusammenarbeit mit dem LSPD / Sheriff Office:</strong>
-            <p>Das FIB wird unter meiner Leitung als übergeordnete Bundesbehörde agieren – unterstützend bei Großlagen, federführend bei Ermittlungen, aber immer auf Augenhöhe im Datenaustausch.</p>
+            <!-- SEKTION 2: Erfahrung -->
+            <div id="experience" class="data-block">
+                <h2>Dienstlicher Werdegang</h2>
+                <p>Nachweise über bisherige Tätigkeiten innerhalb staatlicher Exekutivorgane:</p>
+                <ul>
+                    <li><strong>San Andreas Highway Patrol</strong><br><small style="color: var(--text-muted)">6 Monate – Dienstgrad: Captain</small><br>Leitung und Restrukturierung der Ermittlungsabteilung für Schwerstkriminalität.</li>
+                    <li><strong>Federal Investigation Bureau</strong><br><small style="color: var(--text-muted)">3 Monate – Dienstgrad: Special Agent in Charge</small><br>Fokus auf Wirtschaftskriminalität und behördenübergreifende Operationen.</li>
+                    <li><strong>Führungskompetenzen</strong><br>Ausarbeitung von Dienstvorschriften (SOPs), Budgetierung sowie strategische Krisenintervention bei Geisellagen.</li>
+                </ul>
+            </div>
+
+            <!-- SEKTION 3: Konzept -->
+            <div id="concept" class="data-block">
+                <h2>Strategisches Fraktionskonzept</h2>
+                <p>Das primäre Ziel der neuen Führungsebene ist die Etablierung des FIB als führende, spezialisierte Ermittlungsbehörde.</p>
+                
+                <h3 style="font-size: 16px; color: var(--gov-blue-light); margin-top: 20px;">1. Abteilungsstruktur und Spezialisierung</h3>
+                <ul>
+                    <li><strong>Organized Crime Task Force (OCTF):</strong> Fokus auf Langzeitermittlungen und das Zerschlagen krimineller Infrastrukturen, statt reinem Streifendienst.</li>
+                    <li><strong>Human Resources & Training:</strong> Einführung eines standardisierten, mehrstufigen Auswahlverfahrens für neue Agenten.</li>
+                    <li><strong>Internal Affairs Bureau (IAB):</strong> Prävention und Aufklärung von Korruption innerhalb aller staatlichen Behörden.</li>
+                </ul>
+
+                <h3 style="font-size: 16px; color: var(--gov-blue-light); margin-top: 20px;">2. Interbehördliche Kooperation</h3>
+                <p>Das FIB wird als Bindeglied agieren. Durch gemeinsame Task-Forces mit dem LSPD und dem Sheriff Office sichern wir den Informationsfluss und garantieren maximale Effizienz bei Großkriminalität.</p>
+            </div>
+
+            <!-- SEKTION 4: Motivation -->
+            <div id="motivation" class="data-block">
+                <h2>Dienstliches Schreiben</h2>
+                <p>Sehr geehrte Serverleitung, sehr geehrter Personalrat,</p>
+                <p>
+                    mit diesem Schreiben bekunde ich mein offizielles Interesse an der Besetzung der vakanten Stelle des <strong>Director of the Federal Investigation Bureau</strong>. 
+                </p>
+                <p>
+                    Die Behörde benötigt zum aktuellen Zeitpunkt eine strategische Neuausrichtung, die administrative Disziplin mit aktivem und tiefgründigem Ermittlungs-Roleplay verbindet. Durch meine lückenlose Diensthistorie bringe ich das nötige Fundament mit, um die Fraktion strukturiert, fair und langfristig attraktiv für alteingesessene sowie neue Spieler zu gestalten.
+                </p>
+                <p>Für eine detaillierte Vorstellung meines Konzepts stehe ich Ihnen im Rahmen eines persönlichen Gesprächs jederzeit zur Verfügung.</p>
+                <p>Mit freundlichen Grüßen,</p>
+                <p><strong>[Dein Name]</strong><br><small style="color: var(--text-muted)">Bewerber für den Posten des Directors</small></p>
+            </div>
+
         </div>
-
-        <!-- SEKTION 4: Motivation -->
-        <div id="motivation" class="data-block">
-            <h3>[MOTIVATIONSSCHREIBEN]</h3>
-            <p>Sehr geehrte Serverleitung, sehr geehrter Personalrat,</p>
-            <p>
-                das FIB benötigt eine Führung, die nicht nur Befehle erteilt, sondern die Behörde als Mentor und Stratege nach vorne bringt. Durch meine langjährige Erfahrung im staatlichen Sektor kenne ich die Schwachstellen im aktuellen System und weiß, wie man die Motivation der Agenten langfristig hochhält.
-            </p>
-            <p>
-                Mein Ziel ist es nicht, das Rad neu zu erfinden, sondern ein funktionierendes, diszipliniertes und respektiertes FIB aufzubauen, das im Roleplay Maßstäbe setzt.
-            </p>
-            <p>Über eine Einladung zu einem persönlichen Gespräch (UnRP-Gespräch) freue ich mich.</p>
-            <p>Hochachtungsvoll,<br><strong>[Dein Name]</strong></p>
-        </div>
-
     </div>
 </div>
 
 <script>
     function openSection(sectionId) {
-        // Alle Inhaltsblöcke ausblenden
         const blocks = document.querySelectorAll('.data-block');
         blocks.forEach(block => block.classList.remove('active'));
 
-        // Alle Buttons deaktivieren
         const buttons = document.querySelectorAll('.nav-btn');
         buttons.forEach(btn => btn.classList.remove('active'));
 
-        // Gewählten Block und Button aktivieren
         document.getElementById(sectionId).classList.add('active');
         event.currentTarget.classList.add('active');
     }
