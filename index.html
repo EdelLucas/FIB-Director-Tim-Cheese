@@ -6,8 +6,8 @@
     <title>FIB Terminal - Dossier: Tim Cheese</title>
     <style>
         :root {
-            --bg-deep: #050608; /* Tiefschwarz */
-            --bg-panel: rgba(14, 18, 26, 0.95); /* Sehr dunkles Blau-Schwarz */
+            --bg-deep: #030406; /* Tiefschwarz */
+            --bg-panel: rgba(7, 10, 15, 0.88); /* Dunkelblau-Schwarz mit hoher Deckkraft für Lesbarkeit */
             --gold-main: #d4af37; /* Klassisches Gold */
             --gold-glow: rgba(212, 175, 55, 0.15);
             --border-color: rgba(212, 175, 55, 0.25); /* Goldene Rahmenlinien */
@@ -24,10 +24,18 @@
             height: 100%;
             overflow: hidden;
             background-color: var(--bg-deep);
-            /* Edler Farbverlauf im Hintergrund */
+            
+            /* HIER DEIN HINTERGRUNDBILD EINFÜGEN */
+            /* Aktuell ist ein neutrales, dunkles Texturbild als Platzhalter drin */
             background-image: 
-                radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(212, 175, 55, 0.05) 0px, transparent 60%);
+                linear-gradient(rgba(3, 4, 6, 0.85), rgba(3, 4, 6, 0.85)), /* Schwarzer Schutzschleier für Text-Lesbarkeit */
+                url('https://images.unsplash.com/photo-1541872703-74c5e44368f9?q=80&w=1920&auto=format&fit=crop'); 
+            
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-blend-mode: multiply; /* Verblendet das Bild edel mit der Hintergrundfarbe */
+            
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: var(--text-bright);
             display: flex;
@@ -41,8 +49,8 @@
             display: flex;
             flex-direction: column;
             background: var(--bg-panel);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px); /* Macht den Hintergrund hinter dem Panel leicht unscharf */
+            -webkit-backdrop-filter: blur(15px);
         }
 
         /* Edler Header */
@@ -52,7 +60,7 @@
             display: flex;
             align-items: center;
             flex-shrink: 0;
-            background: rgba(5, 6, 8, 0.5);
+            background: rgba(3, 4, 6, 0.6);
         }
 
         .brand-zone {
@@ -94,7 +102,7 @@
 
         /* ZENTRIERTE NAVIGATION */
         .navigation-bar {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             padding: 12px 40px;
             display: flex;
             justify-content: center;
@@ -125,11 +133,11 @@
         }
 
         .nav-item.active {
-            background: linear-gradient(135deg, var(--accent-blue), #111827);
+            background: linear-gradient(135deg, var(--accent-blue), #080c14);
             color: var(--gold-main);
             border-color: var(--gold-main);
             font-weight: 700;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 0 10px var(--gold-glow);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), inset 0 0 10px var(--gold-glow);
         }
 
         /* Main Workspace */
@@ -144,7 +152,7 @@
             padding: 50px 60px;
             overflow-y: auto;
             box-sizing: border-box;
-            background: radial-gradient(circle at center, rgba(30, 58, 138, 0.03) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(30, 58, 138, 0.05) 0%, transparent 75%);
         }
 
         /* Scrollbar Design */
@@ -195,7 +203,7 @@
         }
 
         .profile-card {
-            background: rgba(30, 58, 138, 0.1); /* Dunkelblau-transparent */
+            background: rgba(30, 58, 138, 0.12); /* Dunkelblau-transparent */
             border: 1px solid rgba(212, 175, 55, 0.15);
             padding: 20px;
             border-radius: 6px;
@@ -251,7 +259,7 @@
         }
 
         .highlight-box {
-            background: linear-gradient(90deg, rgba(30, 58, 138, 0.2), transparent);
+            background: linear-gradient(90deg, rgba(30, 58, 138, 0.25), transparent);
             border-left: 2px solid var(--gold-main);
             padding: 20px;
             border-radius: 0 6px 6px 0;
@@ -317,7 +325,7 @@
                 </p>
             </div>
 
-            <!-- 2. INFOS ZU MKR -->
+            <!-- 2. INFOS ZU MIR -->
             <div id="about" class="content-section">
                 <h2>Infos zu Mir</h2>
                 <p>Registrierte Stammdaten zur Person Tim Cheese:</p>
